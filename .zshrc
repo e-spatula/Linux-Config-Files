@@ -11,7 +11,6 @@ bindkey -e
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
-
 # Use modern completion system
 autoload -Uz compinit
 compinit
@@ -55,3 +54,6 @@ ccd() {
 	local val=${1:?Must provide an argument}
 	cd ~/Documents/CITS$val
 }
+
+alias docs="cd ~/Documents"
+alias desk="cd ~/Desktop"
