@@ -1,4 +1,3 @@
-
 autoload -Uz promptinit
 promptinit
 prompt adam1
@@ -38,3 +37,21 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 alias 2002="cd ~/Documents/CITS2002"
 alias mycc="cc -std=c99 -Wall -pedantic -Werror"
 
+make_c_file() {
+if [ -f "t.c" ]
+then
+	vim t.c
+ else
+echo '#include <stdio.h>
+int main(int argc, char** argv) {\n\tprintf("Hello, World!\\n");\n\treturn(0);\n}' >> t.c
+vim t.c
+fi
+}
+
+alias zedit="vim ~/zsh_store/.zshrc"
+alias sa="source ~/.zshrc"
+
+ccd() {
+	local val=${1:?Must provide an argument}
+	cd ~/Documents/CITS$val
+}
