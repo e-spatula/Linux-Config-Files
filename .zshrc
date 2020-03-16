@@ -57,3 +57,4 @@ ccd() {
 
 alias docs="cd ~/Documents"
 alias desk="cd ~/Desktop"
+alias downloads="cd ~/Downloads"
