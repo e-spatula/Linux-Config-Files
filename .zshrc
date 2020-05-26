@@ -35,8 +35,9 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 alias 2002="cd ~/Documents/CITS2002"
 alias mycc="cc -std=c99 -Wall -pedantic -Werror"
+alias mycpp="g++ -std=c++11 -Wall -pedantic -Werror" 
 
-make_c_file() {
+vc() {
 if [ -f "t.c" ]
 then
 	vim t.c
@@ -58,3 +59,16 @@ ccd() {
 alias docs="cd ~/Documents"
 alias desk="cd ~/Desktop"
 alias downloads="cd ~/Downloads"
+
+stats() {
+	local val=${1:?Must provide an argument}
+	cd ~/Documents/STAT$val 
+}
+
+ff() {
+	firefox $1 &	
+}
+
+alias kp="killall /usr/bin/python3 || killall station"
+alias tmux="TERM=screen-256color-bce tmux"
+alias vsset="vim ~/.config/Code/User/settings.json"
