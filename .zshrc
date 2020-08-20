@@ -1,38 +1,15 @@
-autoload -Uz promptinit
-promptinit
-prompt adam1
+eval $(dircolors -p | sed -e 's/DIR 01;34/DIR 01;36/' | dircolors /dev/stdin)
 
-setopt histignorealldups sharehistory
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/pulse/extra/usr/lib/x86_64-linux-gnu/
 
-# Use emacs keybindings even if our EDITOR is set to vi
-bindkey -e
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=100000
+AVEHIST=100000
+# HISTFILE=~/.bash_history
 HISTFILE=~/.zsh_history
-# Use modern completion system
-autoload -Uz compinit
-compinit
-
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
-
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'	
-
+	
 alias 2002="cd ~/Documents/CITS2002"
 alias mycc="cc -std=c99 -Wall -pedantic -Werror"
 alias mycpp="g++ -std=c++11 -Wall -pedantic -Werror" 
@@ -42,15 +19,20 @@ if [ -f "t.c" ]
 then
 	vim t.c
  else
+touch t.c
 echo '#include <stdio.h>
-int main(int argc, char** argv) {\n\tprintf("Hello, World!\\n");\n\treturn(0);\n}' >> t.c
+int main(int argc, char** argv) {
+	printf("Hello, World!\\n");
+	return(0);
+}' >> t.c
 vim t.c
 fi
 }
 
 alias zedit="vim ~/zsh_store/.zshrc"
-alias sa="source ~/.zshrc"
 
+alias sact="source ~/.zshrc"
+# alias sa="source ~/.bashrc"
 ccd() {
 	local val=${1:?Must provide an argument}
 	cd ~/Documents/CITS$val
@@ -69,6 +51,22 @@ ff() {
 	firefox $1 &	
 }
 
-alias kp="killall /usr/bin/python3 || killall station"
+alias kp="killall ./station"
 alias tmux="TERM=screen-256color-bce tmux"
 alias vsset="vim ~/.config/Code/User/settings.json"
+na() {
+	nautilus --browser $1 &
+}
+
+hist() {
+	cat ~/.zsh_history
+}
+
+alias pulse="/usr/local/pulse/pulseUi &"
+
+ports() {
+	echo "you might want to try lsof -i"
+}
+
+alias lorem="curl https://gist.githubusercontent.com/eddie-atkinson/b502aae2dc358635faf67c51e95eab06/raw/f7b5c5be68a3daf9892167513840d435bef3e3bb/lorem.txt"
+source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
